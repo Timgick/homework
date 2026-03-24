@@ -1,0 +1,39 @@
+Requirement already satisfied: ucimlrepo in /usr/local/lib/python3.13/dist-packages (0.0.7)
+Requirement already satisfied: pandas>=1.0.0 in /usr/local/lib/python3.13/dist-packages (from ucimlrepo) (2.2.2)
+Requirement already satisfied: certifi>=2020.12.5 in /usr/local/lib/python3.13/dist-packages (from ucimlrepo) (2025.8.3)
+Requirement already satisfied: numpy>=1.26.0 in /usr/local/lib/python3.13/dist-packages (from pandas>=1.0.0->ucimlrepo) (2.0.2)
+Requirement already satisfied: python-dateutil>=2.8.2 in /usr/local/lib/python3.13/dist-packages (from pandas>=1.0.0->ucimlrepo) (2.9.0.post0)
+Requirement already satisfied: pytz>=2020.1 in /usr/local/lib/python3.13/dist-packages (from pandas>=1.0.0->ucimlrepo) (2025.2)
+Requirement already satisfied: tzdata>=2022.7 in /usr/local/lib/python3.13/dist-packages (from pandas>=1.0.0->ucimlrepo) (2025.2)
+Requirement already satisfied: six>=1.5 in /usr/local/lib/python3.13/dist-packages (from python-dateutil>=2.8.2->pandas>=1.0.0->ucimlrepo) (1.17.0)
+1) Число столбцов: 15
+
+2) Пропуски в данных:
+   workclass: 963 пропусков
+   occupation: 966 пропусков
+   native-country: 274 пропусков
+
+3) Кол-во уникальных значений в столбце race: 5
+
+4) Медиана hours-per-week: 40.0
+
+5) Распределение по полу с доходом >50K:
+   Male: 6662
+   Female: 1179
+   Больше: Male
+
+6) Заполнение пропусков:
+   Столбец workclass: заполнено значением 'Private'
+   Столбец occupation: заполнено значением 'Prof-specialty'
+   Столбец native-country: заполнено значением 'United-States'
+
+Альтернативные методы заполнения пропусков:
+- Медианой/средним для числовых данных
+
+Пропуски после заполнения: 0
+Число столбцов в наборе данных - 15.
+Есть ли пропуски в данных? Если есть, то в каких столбцах - Да, есть, в workclass, occupation, native-country.
+Кол-во уникальных значений в столбце race - 5.
+Медиана hours-per-week - 40.0
+Кого больше - женщин или мужчин с ЗП >50K? - Мужчин.
+6)Можно логически связать с другими столбиками(например с образованием), посчитать вероятности разных комбинаций данных и заполнять по полученным вероятностям
