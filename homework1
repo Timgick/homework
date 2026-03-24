@@ -1,0 +1,53 @@
+import pandas as pd
+
+# Загрузка набора данных
+# Замените 'your_dataset.csv' на название вашего файла
+df = pd.read_csv('your_dataset.csv')
+
+# 1) Число столбцов в наборе данных
+num_columns = df.shape[1]
+print(f'Число столбцов в наборе данных: {num_columns}')
+
+# 2) Есть ли пропуски в данных? Если есть, то в каких столбцах
+missing_values = df.isnull().sum()
+missing_columns = missing_values[missing_values > 0]
+if not missing_columns.empty:
+    print('Есть пропуски в данных в следующих столбцах:')
+    print(missing_columns)
+else:
+    print('Пропусков в данных нет.')
+
+# 3) Количество уникальных значений в столбце race
+unique_race_values = df['race'].nunique()
+print(f'Количество уникальных значений в столбце race: {unique_race_values}')
+
+# 4) Медиана hours-per-week
+median_hours = df['hours-per-week'].median()
+print(f'Медиана hours-per-week: {median_hours}')
+
+# 5) Кого больше - женщин или мужчин с ЗП >50K?
+salary_greater_50k = df[df['salary'] == '>50K']['gender'].value_counts()
+if salary_greater_50k['Male'] > salary_greater_50k['Female']:
+    print('Больше мужчин с ЗП >50K')
+else:
+    print('Больше женщин с ЗП >50K')
+
+# 6) Заполнение пропущенных данных наиболее встречаемыми значениями
+for column in missing_columns.index:
+    most_frequent_value = df[column].mode()[0]
+    df[column].fillna(most_frequent_value, inplace=True)
+
+# Альтернативные методы заполнения пропущенных данных
+# 1. Использование медианы для числовых столбцов
+# df['numeric_column'].fillna(df['numeric_column'].median(), inplace=True)
+
+# 2. Использование среднего (среднее значение)
+# df['numeric_column'].fillna(df['numeric_column'].mean(), inplace=True)
+
+# 3. Заполнение на основе значений других колонок. Например:
+# df['numeric_column'].interpolate(method='linear', inplace=True)
+
+# 4. Использование алгоритмов для предсказания пропущенных значений (например, KNN)
+# Это можно сделать с помощью библиотеки scikit-learn
+
+print('Пропуски заполнены наиболее встречаемыми значениями.')
